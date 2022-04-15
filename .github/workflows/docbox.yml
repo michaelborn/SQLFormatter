@@ -19,7 +19,7 @@ jobs:
       - name: Generate Docs
         uses: Ortus-Solutions/commandbox-action@v1
         with:
-          cmd: run-script docbox
+          cmd: run-script build:docs
       
       - name: Commit Docs to Repo
         uses: stefanzweifel/git-auto-commit-action@v4
