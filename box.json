@@ -1,46 +1,55 @@
 {
-    "name": "sqlFormatter",
-    "version": "1.0.0",
-    "location": "ForgeboxStorage",
-    "author": "Michael Born <michael@ortussolutions.com>",
-    "homepage": "https://github.com/michaelborn/sqlformatter",
-    "documentation": "https://github.com/michaelborn/sqlformatter",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/michaelborn/sqlformatter"
+    "name":"sqlFormatter",
+    "version":"1.0.0",
+    "location":"ForgeboxStorage",
+    "author":"Michael Born <michael@ortussolutions.com>",
+    "homepage":"https://github.com/michaelborn/sqlformatter",
+    "documentation":"https://github.com/michaelborn/sqlformatter",
+    "repository":{
+        "type":"git",
+        "url":"https://github.com/michaelborn/sqlformatter"
     },
-    "bugs": "https://github.com/michaelborn/sqlformatter",
-    "shortDescription": "A CFML wrapper for the Vertical Blank sql-formatter java library",
-    "slug": "sqlformatter",
-    "type": "modules",
-    "keywords": "",
-    "license": [
+    "bugs":"https://github.com/michaelborn/sqlformatter",
+    "shortDescription":"A CFML wrapper for the Vertical Blank sql-formatter java library",
+    "slug":"sqlformatter",
+    "type":"modules",
+    "keywords":"",
+    "license":[
         {
-            "type": "Apache2",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+            "type":"Apache2",
+            "url":"http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     ],
-    "contributors": [],
-    "dependencies": {},
+    "contributors":[],
+    "dependencies":{
+        "sql-formatter":"jar:https://search.maven.org/remotecontent?filepath=com/github/vertical-blank/sql-formatter/2.0.3/sql-formatter-2.0.3.jar",
+        "cbjavaloader":"^2.1.0+5"
+    },
     "devDependencies":{
         "coldbox":"6.6.0-snapshot",
         "testbox":"4.6.0-snapshot"
     },
-    "ignore": [
+    "ignore":[
         "**/.*",
         "test-harness",
         "/server*.json"
     ],
-    "scripts": {
-        "build:docs": "docbox generate mapping=`package show slug` excludes=tests|ModuleConfig strategy-outputDir=docs strategy-projectTitle=`package show name`",
-        "format": "cfformat run helpers,models,test-harness/tests/,ModuleConfig.cfc --overwrite",
-        "format:watch": "cfformat watch helpers,models,test-harness/tests/,ModuleConfig.cfc ./.cfformat.json",
-        "format:check": "cfformat check helpers,models,test-harness/tests/,ModuleConfig.cfc",
-        "cfpm": "echo '\".engine/adobe2021/WEB-INF/cfusion/bin/cfpm.sh\"' | run",
-        "cfpm:install": "echo '\".engine/adobe2021/WEB-INF/cfusion/bin/cfpm.sh\" install ${1}' | run",
-        "install:2021": "run-script cfpm:install zip,debugger"
+    "scripts":{
+        "build:docs":"docbox generate mapping=`package show slug` excludes=tests|ModuleConfig strategy-outputDir=docs strategy-projectTitle=`package show name`",
+        "format":"cfformat run helpers,models,test-harness/tests/,ModuleConfig.cfc --overwrite",
+        "format:watch":"cfformat watch helpers,models,test-harness/tests/,ModuleConfig.cfc ./.cfformat.json",
+        "format:check":"cfformat check helpers,models,test-harness/tests/,ModuleConfig.cfc",
+        "cfpm":"echo '\".engine/adobe2021/WEB-INF/cfusion/bin/cfpm.sh\"' | run",
+        "cfpm:install":"echo '\".engine/adobe2021/WEB-INF/cfusion/bin/cfpm.sh\" install ${1}' | run",
+        "install:2021":"run-script cfpm:install zip,debugger"
     },
-    "testbox": {
-        "runner": "http://localhost:60299/tests/runner.cfm"
+    "testbox":{
+        "runner":"http://localhost:60299/tests/runner.cfm"
+    },
+    "installPaths":{
+        "coldbox":"test-harness/coldbox/",
+        "sql-formatter":"lib/sql-formatter/",
+        "testbox":"test-harness/testbox/",
+        "cbjavaloader":"modules/cbjavaloader/"
     }
 }

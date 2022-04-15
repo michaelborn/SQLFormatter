@@ -6,18 +6,15 @@
     },
     "web":{
         "http":{
-            "port":"60299"
+            "port":"60199"
         },
         "rewrites":{
             "enable":"true"
         },
-		"webroot": "test-harness",
-		"aliases":{
+        "webroot":"test-harness",
+        "aliases":{
             "/moduleroot/sqlFormatter":"../"
         }
     },
-    "openBrowser":"false",
-	"cfconfig": {
-		"file" : ".cfconfig.json"
-	}
+    "openBrowser":"false"
 }

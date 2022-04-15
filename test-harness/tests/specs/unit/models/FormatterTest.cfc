@@ -3,7 +3,7 @@
 * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
 * responsibility to update the model annotation instantiation path and init your model.
 */
-component extends="tests.specs.BaseModuleTest" model="SQLFormatter.models.Formatter"{
+component extends="coldbox.system.testing.BaseModelTest" model="SQLFormatter.models.Formatter" unloadColdBox=false appMapping="root" {
 
 	function beforeAll(){
 		super.beforeAll();
