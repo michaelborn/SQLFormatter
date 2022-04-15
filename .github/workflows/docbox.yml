@@ -1,0 +1,27 @@
+name: DocBox
+
+on:
+  push:
+    branches:
+      - master
+      - main
+    paths:
+      - '**.cfc'
+      - '.github/workflows/*.yml'
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      
+      - name: Generate Docs
+        uses: Ortus-Solutions/commandbox-action@v1
+        with:
+          cmd: run-script docbox
+      
+      - name: Commit Docs to Repo
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "📖 DOC: Auto-generate API docs"
