@@ -3,20 +3,10 @@
 * and then create it, prepare it for mocking and then place it in the variables scope as 'model'. It is your
 * responsibility to update the model annotation instantiation path and init your model.
 */
-component extends="coldbox.system.testing.BaseModelTest" model="SQLFormatter.models.Formatter" unloadColdBox=false appMapping="root" {
-
-	function beforeAll(){
-		super.beforeAll();
-
-		// setup the model
-		super.setup();
-
-		// init the model object
-		model.init();
-		
-		// wire me up!
-		getWirebox().autowire( model );
-	}
+component
+	extends="tests.specs.unit.BaseModelTest"
+	model="SQLFormatter.models.Formatter"
+{
 
 	function run(){
 
@@ -24,16 +14,6 @@ component extends="coldbox.system.testing.BaseModelTest" model="SQLFormatter.mod
 			it( "can initialize", function() {
                 expect( isInstanceOf( variables.model, "SQLFormatter.models.Formatter" ) ).toBeTrue();
 			});
-
-            it( "throws if sql-formatter jar is not found", function() {
-                var mockFormatter = getMockBox().createMock( "SQLFormatter.models.Formatter" );
-                mockFormatter.$( method = "initJavaLib", callback = () => {
-                    throw( type = "ClassNotFoundException" );
-                } );
-                expect( function() {
-                    mockFormatter.init();
-                } ).toThrow( "SQLFormatter.MissingJarException" );
-            });
 
             it( "can load sql-formatter library", function() {
                 var mockFormatter = getMockBox().createMock( "SQLFormatter.models.Formatter" );
@@ -56,10 +36,9 @@ component extends="coldbox.system.testing.BaseModelTest" model="SQLFormatter.mod
 				var postgresFormat = variables.model
 						.of( "postgresql" )
 						.format( uglySQL );
-				
-				// we need to reinit due to `.of()` causing the underlying Formatter class to mutate.
+
 				var mysqlFormat = new SQLFormatter.models.Formatter()
-						.of( "postgresql" )
+						.of( "mysql" )
 						.format( uglySQL );
 
 				expect( postgresFormat ).toBeTypeOf( "string" )

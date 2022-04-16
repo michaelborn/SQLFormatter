@@ -29,6 +29,7 @@ component{
 	moduleRootPath = REReplaceNoCase( rootPath, "#request.MODULE_PATH#(\\|/)test-harness(\\|/)", "" );
 	this.mappings[ "/moduleroot" ] 				= moduleRootPath;
 	this.mappings[ "/#request.MODULE_NAME#" ] 	= moduleRootPath & "#request.MODULE_PATH#";
+	this.mappings[ "/cbjavaloader" ] 			= moduleRootPath & "modules/cbjavaloader";
 
 	function onRequestStart( required targetPage ){
 
