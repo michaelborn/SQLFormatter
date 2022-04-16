@@ -47,23 +47,6 @@ component{
 	this.mappings[ "/moduleroot" ] = moduleRootPath;
 	this.mappings[ "/#request.MODULE_NAME#" ] = modulePath;
 
-	// ORM definitions: ENABLE IF NEEDED
-	//this.datasource = "coolblog";
-	//this.ormEnabled = "true";
-	/**
-	this.ormSettings = {
-		cfclocation = [ "models" ],
-		logSQL = true,
-		dbcreate = "update",
-		secondarycacheenabled = false,
-		cacheProvider = "ehcache",
-		flushAtRequestEnd = false,
-		eventhandling = true,
-		eventHandler = "cborm.models.EventHandler",
-		skipcfcWithError = true
-	};
-	**/
-
 	// application start
 	public boolean function onApplicationStart(){
 		application.cbBootstrap = new coldbox.system.Bootstrap( COLDBOX_CONFIG_FILE, COLDBOX_APP_ROOT_PATH, COLDBOX_APP_KEY, COLDBOX_APP_MAPPING );
@@ -78,7 +61,6 @@ component{
 			if( server.keyExists( "lucee" ) ){
 				pagePoolClear();
 			}
-			// ormReload();
 		}
 
 		// Process ColdBox Request

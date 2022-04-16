@@ -30,27 +30,9 @@ component{
 	this.mappings[ "/moduleroot" ] 				= moduleRootPath;
 	this.mappings[ "/#request.MODULE_NAME#" ] 	= moduleRootPath & "#request.MODULE_PATH#";
 
-	// ORM Definitions
-	/**
-	this.datasource = "coolblog";
-	this.ormEnabled = "true";
-	this.ormSettings = {
-		cfclocation = [ "/root/models" ],
-		logSQL = true,
-		dbcreate = "update",
-		secondarycacheenabled = false,
-		cacheProvider = "ehcache",
-		flushAtRequestEnd = false,
-		eventhandling = true,
-		eventHandler = "cborm.models.EventHandler",
-		skipcfcWithError = false
-	};
-	**/
-
 	function onRequestStart( required targetPage ){
 
 		if( url.keyExists( "fwreinit" ) ){
-			ormreload();
 			if( StructKeyExists( server, "lucee" ) ){
 				pagePoolClear();
 			}
