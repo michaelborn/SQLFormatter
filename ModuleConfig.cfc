@@ -25,7 +25,7 @@ component {
 	 */
 	function configure(){
 		settings = {
-			libPath : modulePath & "/lib/sql-formatter",
+			libPath : modulePath & "/lib/sql-formatter"
 		};
 	}
 
