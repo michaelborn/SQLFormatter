@@ -2,23 +2,15 @@
 
 A CFML wrapper for the Vertical Blank sql-formatter java library.
 
-[![Release](https://github.com/michaelborn/SQLFormatter/actions/workflows/release.yml/badge.svg)](https://github.com/michaelborn/SQLFormatter/actions/workflows/release.yml)
-
-See [SQLFormatter on GitHub](https://github.com/vertical-blank/sql-formatter) for more info.
+[![Release](https://github.com/michaelborn/SQLFormatter/actions/workflows/ci.yml/badge.svg)](https://github.com/michaelborn/SQLFormatter/actions/workflows/ci.yml)
 
 ## Installation
 
-1. Install this module. `box install SQLFormatter`
-2. Add the module's `lib/` directory to your application's `javaSettings.loadPaths`:
+Using CommandBox:
 
 ```js
-this.javaSettings.loadPaths = [
-    // ...
-    expandPath( "/modules/SQLFormatter/lib/sql-formatter/" )
-];
+box install SQLFormatter
 ```
-
-Restart your app. The CF engine should "pick up" the `sql-formatter-x.y.z.jar` jar and load it into the application.
 
 ## Usage
 
@@ -29,13 +21,15 @@ var prettySQL = getInstance( "Formatter@SQLFormatter" )
                     .format( "SELECT COUNT(*) FROM users" );
 ```
 
-For advanced syntax, you can set the dialect using `.of()`:
+For database-specific syntax, you can set the dialect using `.of()`:
 
 ```js
 var prettySQL = getInstance( "Formatter@SQLFormatter" )
                     .of( "postgres" )
                     .format( "SELECT COUNT(*) FROM users" );
 ```
+
+See [SQLFormatter on GitHub](https://github.com/vertical-blank/sql-formatter) for more info.
 
 ### Dialect
 
@@ -56,10 +50,35 @@ var prettySQL = getInstance( "Formatter@SQLFormatter" )
 
 The SQLFormatter class documentation is auto-generated via [DocBox](https://docbox.ortusbooks.com/) and hosted on Github Pages at [michaelborn.github.io/SQLFormatter/](https://michaelborn.github.io/SQLFormatter/)
 
-## Contributing
-
-I could use help with this!
-
 ## Thanks
 
 Special thanks to the [SQLFormatter library](https://github.com/vertical-blank/sql-formatter). I could'na dunnit without ya. 😉
+
+## CONTRIBUTING
+
+All contributions welcome! Fixing typos or adding tests are especially easy ways to help out.
+
+To get started hacking on SQLFormatter:
+
+1. Clone the module - `git clone git@github.com:michaelborn/sqlFormatter.git`
+2. Install dependencies - `box install`
+3. Start up a Lucee server - `box server start serverConfigFile=server-lucee@5.json`
+4. Write code
+5. Run tests - `box testbox run`
+6. Push up a [pull request](https://github.com/michaelborn/sqlFormatter/pulls)
+
+## The Good News
+
+> For all have sinned, and come short of the glory of God ([Romans 3:23](https://www.kingjamesbibleonline.org/Romans-3-23/))
+
+> But God commendeth his love toward us, in that, while we were yet sinners, Christ died for us. ([Romans 5:8](https://www.kingjamesbibleonline.org/Romans-5-8))
+
+> That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. ([Romans 10:9](https://www.kingjamesbibleonline.org/Romans-10-9/))
+ 
+## Repository
+
+Copyright 2022 (and on) - [Michael Born](https://michaelborn.me/)
+
+* [Homepage](https://github.com/michaelborn/sqlFormatter)
+* [Issue Tracker](https://github.com/michaelborn/sqlFormatter/issues)
+* [New BSD License](https://github.com/michaelborn/sqlFormatter/blob/master/LICENSE)
