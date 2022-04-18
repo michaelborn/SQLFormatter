@@ -16,8 +16,8 @@
     "keywords":"",
     "license":[
         {
-            "type":"Apache2",
-            "url":"http://www.apache.org/licenses/LICENSE-2.0.html"
+            "type":"BSD-3",
+            "url":"https://github.com/michaelborn/sqlFormatter/blob/master/LICENSE"
         }
     ],
     "contributors":[],
@@ -33,7 +33,8 @@
         "**/.*",
         "test-harness",
         "/server*.json",
-        "docs/"
+        "docs/",
+        "LICENSE"
     ],
     "scripts":{
         "build:docs":"docbox generate mapping=`package show slug` excludes=test-harness|ModuleConfig strategy-outputDir=docs strategy-projectTitle=`package show name`",
