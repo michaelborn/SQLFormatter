@@ -16,10 +16,12 @@ component
 		// setup the model
 		super.setup();
 
-		// init the model object
-		model.init();
+		if ( structKeyExists( variables, "model" ) ){
+			// init the model object
+			model.init();
 
-		// wire me up!
-		getWirebox().autowire( model );
+			// wire me up!
+			getWirebox().autowire( model );
+		}
 	}
 }
