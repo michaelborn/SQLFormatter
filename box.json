@@ -32,7 +32,8 @@
     "ignore":[
         "**/.*",
         "test-harness",
-        "/server*.json"
+        "/server*.json",
+        "docs/"
     ],
     "scripts":{
         "build:docs":"docbox generate mapping=`package show slug` excludes=tests|ModuleConfig strategy-outputDir=docs strategy-projectTitle=`package show name`",
