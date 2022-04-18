@@ -45,7 +45,7 @@ component{
 
 	// Module Root + Path Mappings
 	this.mappings[ "/moduleroot" ]            = moduleRootPath;
-	this.mappings[ "/coldbox" ]            = this.mappings[ "/root" ] & "coldbox";
+	this.mappings[ "/coldbox" ]               = this.mappings[ "/root" ] & "coldbox";
 	this.mappings[ "/#request.MODULE_NAME#" ] = modulePath;
 	this.mappings[ "/cbjavaloader" ]          = moduleRootPath & "modules/cbjavaloader";
 

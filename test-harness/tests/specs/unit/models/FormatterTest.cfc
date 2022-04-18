@@ -16,11 +16,9 @@ component
 			});
 
             it( "can load sql-formatter library", function() {
-                var mockFormatter = getMockBox().createMock( "SQLFormatter.models.Formatter" );
-                expect( function() {
-                    var SQLFormatter = mockFormatter.getSQLFormatter();
-                    expect( isObject( SQLFormatter ) ).toBeTrue();
-                } ).notToThrow( "SQLFormatter.MissingJarException" );
+				var SQLFormatter = variables.model.getSQLFormatter();
+				expect( isNull( SQLFormatter ) ).toBeFalse();
+				expect( isObject( SQLFormatter ) ).toBeTrue();
             });
 
 			it( "can format SQL", function() {
@@ -37,7 +35,7 @@ component
 						.of( "postgresql" )
 						.format( uglySQL );
 
-				var mysqlFormat = new SQLFormatter.models.Formatter()
+				var mysqlFormat = getInstance( "Formatter@sqlFormatter" )
 						.of( "mysql" )
 						.format( uglySQL );
 

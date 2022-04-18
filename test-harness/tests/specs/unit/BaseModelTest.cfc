@@ -4,11 +4,11 @@
 * responsibility to update the model annotation instantiation path and init your model.
 */
 component
-    extends="coldbox.system.testing.BaseModelTest"
-    appMapping="root"
+    extends       = "coldbox.system.testing.BaseModelTest"
+    appMapping    = "root"
+    loadColdBox   = true
+    unloadColdBox = false
 {
-	loadColdBox   = true;
-	unloadColdBox = false;
 
 	function beforeAll(){
 		super.beforeAll();
@@ -18,7 +18,7 @@ component
 
 		// init the model object
 		model.init();
-		
+
 		// wire me up!
 		getWirebox().autowire( model );
 	}
