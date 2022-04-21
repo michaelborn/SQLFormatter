@@ -2,12 +2,12 @@ name: DocBox
 
 on:
   push:
-    branches:
-      - master
-      - main
-    paths:
-      - '**.cfc'
-      - '.github/workflows/*.yml'
+    # branches:
+    #   - master
+    #   - main
+    # paths:
+    #   - '**.cfc'
+    #   - '.github/workflows/*.yml'
 
 env:
   MODULE_ID: sqlFormatter
@@ -19,11 +19,20 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: "adopt"
+          java-version: "11"
+
+      - name: Setup CommandBox CLI
+        uses: Ortus-Solutions/setup-commandbox@main
+
+      - run: box install commandbox-docbox
       
       - name: Generate Docs
-        uses: Ortus-Solutions/commandbox-action@v1.0.2
-        with:
-          cmd: run-script build:docs
+        run: box run-script build:docs
       
       - name: Commit Docs to Repo
         uses: stefanzweifel/git-auto-commit-action@v4
@@ -31,9 +40,9 @@ jobs:
           commit_message: "📖 DOC: Auto-generate API docs"
       
       - name: Setup env.VERSION
-        uses: Ortus-Solutions/commandbox-action@v1.0.2
-        with:
-          cmd: echo "VERSION=`box package version`" >> $GITHUB_ENV
+        run: echo "VERSION=`box package version`" >> $GITHUB_ENV
+        
+      - run: echo ${{ env.VERSION }}
 
       - name: Upload API Docs to S3
         uses: jakejarvis/s3-sync-action@master
