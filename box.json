@@ -3,21 +3,21 @@
     "version":"1.0.1",
     "location":"ForgeboxStorage",
     "author":"Michael Born <michael@ortussolutions.com>",
-    "homepage":"https://github.com/michaelborn/sqlformatter",
-    "documentation":"https://github.com/michaelborn/sqlformatter",
+    "homepage":"https://github.com/coldbox-modules/sqlFormatter",
+    "documentation":"https://github.com/coldbox-modules/sqlFormatter",
     "repository":{
         "type":"git",
-        "url":"https://github.com/michaelborn/sqlformatter"
+        "url":"https://github.com/coldbox-modules/sqlFormatter"
     },
-    "bugs":"https://github.com/michaelborn/sqlformatter",
+    "bugs":"https://github.com/coldbox-modules/sqlFormatter",
     "shortDescription":"A CFML wrapper for the Vertical Blank sql-formatter java library",
     "slug":"sqlformatter",
     "type":"modules",
-    "keywords":"",
+    "keywords":[ "SQL","prettifier","beautify" ],
     "license":[
         {
             "type":"BSD-3",
-            "url":"https://github.com/michaelborn/sqlFormatter/blob/master/LICENSE"
+            "url":"https://github.com/coldbox-modules/sqlFormatter/blob/master/LICENSE"
         }
     ],
     "contributors":[],
