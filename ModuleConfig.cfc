@@ -6,27 +6,25 @@
 component {
 
 	// Module Properties
-	this.title 				= "sqlFormatter";
-	this.author 			= "Ortus Solutions";
-	this.webURL 			= "https://www.ortussolutions.com";
-	this.description 		= "A CFML wrapper for the Vertical Blank sql-formatter java library";
+	this.title       = "sqlFormatter";
+	this.author      = "Ortus Solutions";
+	this.webURL      = "https://www.ortussolutions.com";
+	this.description = "A CFML wrapper for the Vertical Blank sql-formatter java library";
 
 	// Model Namespace
-	this.modelNamespace		= "sqlformatter";
+	this.modelNamespace = "sqlformatter";
 
 	// CF Mapping
-	this.cfmapping			= "sqlformatter";
+	this.cfmapping = "sqlformatter";
 
 	// Dependencies
-	this.dependencies      = [ "cbjavaloader" ];
+	this.dependencies = [ "cbjavaloader" ];
 
 	/**
 	 * Configure Module
 	 */
 	function configure(){
-		settings = {
-			libPath : modulePath & "/lib/sql-formatter"
-		};
+		settings = { libPath : modulePath & "/lib/sql-formatter" };
 	}
 
 	/**
@@ -40,7 +38,6 @@ component {
 	 * Fired when the module is unregistered and unloaded
 	 */
 	function onUnload(){
-
 	}
 
 }
