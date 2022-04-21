@@ -15,9 +15,16 @@ component accessors="true" {
      * Not chainable.
      *
      * @sql messy SQL string to format.
+     * 
+     * @return prettified SQL string
      */
-    public string function format( required string sql ){
-        return getSQLFormatter().format( arguments.sql );
+    public string function format( required string sql, Object formatConfig ){
+        var formatter = getSQLFormatter();
+                            // .extend( function( dialect ) { return dialect.namedPlaceholderTypes( ":" ); } );
+        if ( !isNull( arguments.formatConfig ) ){
+            return formatter.format( arguments.sql, arguments.formatConfig );
+        }
+        return formatter.format( arguments.sql );
     }
 
     /**
