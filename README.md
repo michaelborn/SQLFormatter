@@ -29,8 +29,6 @@ var prettySQL = getInstance( "Formatter@SQLFormatter" )
                     .format( "SELECT COUNT(*) FROM users" );
 ```
 
-See [SQLFormatter on GitHub](https://github.com/vertical-blank/sql-formatter) for more info.
-
 ### Advanced Formatting Configuration
 
 You can also specify advanced configuration options via the `ConfgBuilder`:
