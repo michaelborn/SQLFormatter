@@ -37,11 +37,11 @@ You can also specify advanced configuration options via the `ConfgBuilder`:
 
 ```js
 var formatConfig = getInstance( "ConfigBuilder@sqlFormatter" )
-								.setIndent("    ") // Defaults to two spaces
-								.setUppercase(true) // Defaults to false (not safe to use when SQL dialect has case-sensitive identifiers)
-								.setLinesBetweenQueries(2) // Defaults to 1
-								.setMaxColumnLength(80) // Defaults to 50
-								.build();
+                        .setIndent("    ") // Defaults to two spaces
+                        .setUppercase(true) // Defaults to false (not safe to use when SQL dialect has case-sensitive identifiers)
+                        .setLinesBetweenQueries(2) // Defaults to 1
+                        .setMaxColumnLength(80) // Defaults to 50
+                        .build();
 ```
 
 You can then pass the `FormatConfig` object as the second parameter in the `Formatter.format()` method call:
