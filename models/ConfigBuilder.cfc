@@ -35,7 +35,7 @@ component accessors="true" {
 	 *
 	 * @return com.github.vertical_blank.sqlformatter.core.FormatConfig
 	 */
-	public Object function build(){
+	public any function build(){
 		return getFormatConfig()
 			.builder()
 			.indent( javacast( "string", getIndent() ) )
