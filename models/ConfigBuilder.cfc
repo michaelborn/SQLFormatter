@@ -24,10 +24,10 @@ component accessors="true" {
         return getFormatConfig()
                     .builder()
                     .indent( javaCast( "string", getIndent() ) )
-                    .maxColumnLength( javaCast( "integer", getMaxColumnLength() ) )
+                    .maxColumnLength( javaCast( "int", getMaxColumnLength() ) )
                     .params( getJavaSafeParams() )
                     .uppercase( javaCast( "boolean", getUppercase() ) )
-                    .linesBetweenQueries( javaCast( "integer", getLinesBetweenQueries() ) )
+                    .linesBetweenQueries( javaCast( "int", getLinesBetweenQueries() ) )
                     .build();
     }
 
