@@ -44,6 +44,51 @@ component extends="tests.specs.unit.BaseModelTest" model="SQLFormatter.models.Co
 				expect( config.linesBetweenQueries ).toBe( 2 );
 				expect( config.maxColumnLength ).toBe( 100 );
 			} );
+
+			it( "works with positional placeholders", function(){
+				var formatted = getInstance( "Formatter@sqlFormatter" )
+					.of( "db2" )
+					.format(
+						"SELECT * FROM pages WHERE slug IN (?,?,?)",
+						getInstance( "ConfigBuilder@sqlFormatter" )
+							.setIndent( "__" )
+							.setParams( [ "a", "b", "c" ] )
+							.build()
+					);
+				expect( formatted ).toBe(
+					"SELECT
+__*
+FROM
+__pages
+WHERE
+__slug IN (a, b, c)"
+				);
+			} );
+
+			/**
+			 * Skipped due to issue with SQLFormatter lib
+			 * @cite https://github.com/vertical-blank/sql-formatter/issues/57
+			 */
+			xit( "works with named placeholders", function(){
+				var formatted = getInstance( "Formatter@sqlFormatter" )
+					.of( "postgresql" )
+					.format(
+						"SELECT * FROM users WHERE name = :name AND age = :age",
+						getInstance( "ConfigBuilder@sqlFormatter" )
+							.setParams( { "name" : "Michael", "age" : "18" } )
+							.build()
+					);
+				writeOutput( "<pre>#formatted#</pre>" );
+				expect( formatted ).toBe(
+					"SELECT
+  *
+FROM
+  users
+WHERE
+  name = 'Michael'
+  AND age = '17'"
+				);
+			} );
 		} );
 	}
 

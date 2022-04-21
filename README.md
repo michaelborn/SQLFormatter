@@ -51,20 +51,29 @@ var prettySQL = getInstance( "Formatter@sqlFormatter" )
 
 ### Parameter Replacement
 
-SQLFormatter supports parameter replacement using either an array of parameters or a struct of key/value params.
+SQLFormatter supports parameter replacement using either an array of parameters or a struct of key/value params passed to the `.withParams()` method.
 
-Specify the parameters via the `ConfigBuilder.params()` method:
+For positional parameters, pass an array:
 
 ```js
 var prettySQL = getInstance( "Formatter@sqlFormatter" )
                     .of( "mysql" )
-                    .format(
-                        "SELECT * FROM pages WHERE slug IN [?, ?, ?]",
-                        getInstance( "ConfigBuilder@sqlFormatter" )
-                            .params( [ "a", "b", "c" ] )
-                            .build()
-                    );
+                    .withParams( [ "a", "b", "c" ] )
+                    .format( "SELECT * FROM pages WHERE slug IN [?, ?, ?]" );
 ```
+
+or for named parameters, use a key/value struct:
+
+```js
+var prettySQL = getInstance( "Formatter@sqlFormatter" )
+                    .of( "postgres" )
+                    .withParams( { "name" : "Michael", "age" : "18" } )
+                    .format( "SELECT * FROM user WHERE name= :michael and age= :age" );
+```
+
+> **Warning:** Only certain dialects support named parameters, and the syntax differs for each. Use `postgresql` for standard `:name` syntax, or `tsql` for `@foo` syntax.
+
+> **Warning:** There is an issue in the underlying library with named placeholders. See [issue #57 on the SQLFormatter repository](https://github.com/vertical-blank/sql-formatter/issues/57) for more details.
 
 ### Dialect
 
@@ -80,14 +89,6 @@ var prettySQL = getInstance( "Formatter@sqlFormatter" )
 * `redshift` - Amazon Redshift
 * `spark` - Spark
 * `tsql` - SQL Server Transact-SQL
-
-## Known Issues
-
-There is currently an issue with named placeholders - it seems the placeholders are not detected and replaced inside the SQL string, likely due to a formatting issue causing the `:name` placeholder to be space-separated. We'd appreciate any help you can offer! 😃 See [Contributing](#contributing) to get started.
-
-## API Docs
-
-The SQLFormatter class documentation is auto-generated via [DocBox](https://docbox.ortusbooks.com/) and hosted on Github Pages at [michaelborn.github.io/SQLFormatter/](https://michaelborn.github.io/SQLFormatter/)
 
 ## Thanks
 

@@ -40,7 +40,7 @@ component accessors="true" {
 			.builder()
 			.indent( javacast( "string", getIndent() ) )
 			.maxColumnLength( javacast( "int", getMaxColumnLength() ) )
-			.params( getJavaSafeParams() )
+			.params( getParams() )
 			.uppercase( javacast( "boolean", getUppercase() ) )
 			.linesBetweenQueries( javacast( "int", getLinesBetweenQueries() ) )
 			.build();
@@ -128,12 +128,16 @@ component accessors="true" {
 		}
 	}
 
-	private function getJavaSafeParams(){
-		var params = getParams();
-		if ( !isStruct( params ) && !isArray( params ) ) {
+	/**
+	 * Getter overload to return a Java-safe parameter array or struct.
+	 * Only an array or struct can be cast to the appropriate type upon passing to the Formatter object.
+	 *
+	 * @return Array|Struct parameters.
+	 */
+	private function getParams(){
+		if ( !isStruct( variables.params ) && !isArray( variables.params ) ) {
 			return [];
 		}
-		return params;
+		return variables.params;
 	}
-
 }

@@ -38,13 +38,12 @@ component extends="tests.specs.unit.BaseModelTest" model="SQLFormatter.models.Fo
 
 			it( "accepts a FormatConfig", function(){
 				var formatted = variables.model.format(
-					"SELECT * FROM pages WHERE name IN (?, ?, ?) ORDER BY 'name'",
+					"SELECT * FROM pages ORDER BY 'name'",
 					getInstance( "ConfigBuilder@sqlFormatter" )
 						.setIndent( "__" )
 						.setUppercase( true )
 						.setLinesBetweenQueries( 2 )
 						.setMaxColumnLength( 100 )
-						.setParams( [ "a", "b", "c" ] )
 						.build()
 				);
 				expect( formatted ).toBe(
@@ -52,56 +51,48 @@ component extends="tests.specs.unit.BaseModelTest" model="SQLFormatter.models.Fo
 __*
 FROM
 __pages
-WHERE
-__name IN (a, b, c)
 ORDER BY
 __'name'"
 				);
 			} );
 
-			it( "works with positional placeholders", function(){
+			it( "works with positional placeholders", function() {
 				var formatted = variables.model
-					.of( "db2" )
-					.format(
-						"SELECT * FROM pages WHERE slug IN (?,?,?)",
-						getInstance( "ConfigBuilder@sqlFormatter" )
-							.setIndent( "__" )
-							.setParams( [ "a", "b", "c" ] )
-							.build()
-					);
-				expect( formatted ).toBe(
-					"SELECT
-__*
-FROM
-__pages
-WHERE
-__slug IN (a, b, c)"
-				);
-			} );
+							.of("postgresql")
+							.withParams( [ "Michael", "18" ] )
+							.format("SELECT * FROM users WHERE name = ? AND age = ?" );
 
-			/**
-			 * TODO: Discover why this fails and FIX IT!
-			 */
-			xit( "works with named placeholders", function(){
-				var formatted = variables.model
-					.of( "postgresql" )
-					.format(
-						"SELECT * FROM users WHERE name = :name AND age = :age",
-						getInstance( "ConfigBuilder@sqlFormatter" )
-							.setParams( { "name" : "Michael", "age" : "18" } )
-							.build()
-					);
-				// writeOutput( "<pre>#formatted#</pre>" );
 				expect( formatted ).toBe(
 					"SELECT
   *
 FROM
   users
 WHERE
-  name = 'Michael'
-  AND age = '17'"
+  name = Michael
+  AND age = 18");
+			});
+
+			/**
+			 * Skipped due to issue with SQLFormatter lib
+			 * @cite https://github.com/vertical-blank/sql-formatter/issues/57
+			 */
+			xit( "works with named placeholders", function() {
+				var formatted = variables.model
+							.of("postgresql")
+							.withParams( { "name" : "Michael", "age" : "18" } )
+							.format("SELECT * FROM users WHERE name = :name AND age = :age" );
+				
+							// writeOutput( "<pre>#formatted#</pre>" );
+				expect( formatted ).toBe(
+					"SELECT
+  *
+FROM
+  users
+WHERE
+  name = Michael
+  AND age = 18"
 				);
-			} );
+			});
 		} );
 	}
 
