@@ -15,10 +15,11 @@ component accessors="true" {
 	 * Not chainable.
 	 *
 	 * @sql messy SQL string to format.
+     * @formatConfig instance of com.github.vertical_blank.sqlformatter.core.FormatConfig.
 	 *
 	 * @return prettified SQL string
 	 */
-	public string function format( required string sql, Object formatConfig ){
+	public string function format( required string sql, any formatConfig ){
 		var formatter = getSQLFormatter();
 		// .extend( function( dialect ) { return dialect.namedPlaceholderTypes( ":" ); } );
 		if ( !isNull( arguments.formatConfig ) ) {
