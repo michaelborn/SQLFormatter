@@ -359,7 +359,7 @@ Class
 			<code>string</code>
 		</td>
 		<td>
-			<strong><a href="Formatter.html#format()">format</A></strong>(string sql)
+			<strong><a href="Formatter.html#format()">format</A></strong>(string sql, [any formatConfig])
 			<br>
 			
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Format SQL with the set dialect or `configuration` argument.
@@ -556,7 +556,7 @@ Class
 		
 	</h3>
 
-	<kbd>public string <strong>format</strong>(string sql)</kbd>
+	<kbd>public string <strong>format</strong>(string sql, [any formatConfig])</kbd>
 
 	<br><br>
 
@@ -581,9 +581,16 @@ Not chainable.</p>
 		
 		<dd><code>sql</code> - messy SQL string to format.</dd>
 		
+		<dd><code>formatConfig</code></dd>
+		
 		</dl>
 	
 
+	
+		<dl>
+			<dt><strong>Returns:</strong></dt>
+			<dd>prettified SQL string</dd>
+		</dl>
 	
 
 	
