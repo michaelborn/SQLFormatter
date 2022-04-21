@@ -44,6 +44,51 @@ component
 										.toBe( mysqlFormat );
 			});
 
+			it( "accepts a FormatConfig", function() {
+				var uglySQL = "SELECT * FROM pages WHERE name IN (?, ?, ?) ORDER BY 'name'";
+
+				var config = getInstance( "ConfigBuilder@sqlFormatter" )
+								.setIndent("__") // Defaults to two spaces
+								.setUppercase(true) // Defaults to false (not safe to use when SQL dialect has case-sensitive identifiers)
+								.setLinesBetweenQueries(2) // Defaults to 1
+								.setMaxColumnLength(100) // Defaults to 50
+								.setParams([ "a", "b", "c" ]) // Map or List. See Placeholders replacement.
+								.build();
+
+				var formatted = variables.model.format( uglySQL, config );
+				expect( formatted ).toBe( "SELECT
+__*
+FROM
+__pages
+WHERE
+__name IN (a, b, c)
+ORDER BY
+__'name'" );
+			});
+
+			xit( "inserts named placeholders", function() {
+				var uglySQL = "SELECT * FROM users WHERE name = :name AND age = :age";
+
+				var config = getInstance( "ConfigBuilder@sqlFormatter" )
+								.setIndent("__") // Defaults to two spaces
+								.setUppercase(true) // Defaults to false (not safe to use when SQL dialect has case-sensitive identifiers)
+								.setLinesBetweenQueries(2) // Defaults to 1
+								.setMaxColumnLength(100) // Defaults to 50
+								.setParams({ "name" : "Michael", "age" : "17" }) // Map or List. See Placeholders replacement.
+								.build();
+
+				var formatted = variables.model
+								.of( "postgresql" )
+								.format( uglySQL, config );
+				// writeOutput( "<pre>#formatted#</pre>" );
+				expect( formatted ).toBe( "SELECT
+__*
+FROM
+__users
+WHERE
+__name = 'Michael'
+__AND age = '17'" );
+			});
 		});
 
 	}
