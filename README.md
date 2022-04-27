@@ -1,5 +1,11 @@
 # SQLFormatter
 
+---
+
+**MOVED: Please head to [coldbox-modules/sqlFormatter](https://github.com/coldbox-modules/sqlFormatter) for the Ortus-maintained fork of this original repo. Thanks! 👋**
+
+---
+
 A CFML wrapper for the Vertical Blank sql-formatter java library.
 
 [![Release](https://github.com/michaelborn/SQLFormatter/actions/workflows/ci.yml/badge.svg)](https://github.com/michaelborn/SQLFormatter/actions/workflows/ci.yml)
